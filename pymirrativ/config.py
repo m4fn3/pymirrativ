@@ -20,6 +20,7 @@ class Config:
     LIVE_REQUEST = "/user/post_live_request"
     USER_APPS = "/user/user_apps"
     CURRENCY = "/user/currency"
+    COLLAB_USERS = "/collab/collaborating_users"
     # Live
     LIVE = "/live/live"
     COMMENTS = "/live/live_comments"
@@ -27,6 +28,9 @@ class Config:
     CATALOG = "/live/catalog"
     LEAVE = "/live/leave"
     ONLINE_USERS = "live/online_users"
+    COMMENT = "/live/live_comment"
+    VIEW_MISSION = "/live/view_mission"
+    LIVE_POLLING = "/live/live_polling"
     # Search
     SEARCH = "/search"
     # Ad

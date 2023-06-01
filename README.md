@@ -4,6 +4,14 @@ An unofficial api wrapper of internal mirrativ api
 ## Installation
 `pip install git+https://github.com/m4fn3/pymirrativ.git`
 
+## Quick Example
+```python
+from pymirrativ import Mirrativ
+client = Mirrativ()
+client.login("<ENTER TOKEN HERE>")
+print(client.me().raw)
+```
+
 ## Docs
 For available methods, see `client.py`.
 
@@ -27,11 +35,3 @@ Here are functions that will affect your grade:
 - `me()` : a grade will be 0 by calling this function if you are not logged in
 - `create_account()` : a grade will be 1
 - `login()` : a grade will be whatever a value your account has
-
-## Quick Example
-```python
-from pymirrativ import Mirrativ
-client = Mirrativ()
-client.login("<ENTER TOKE HERE>")
-print(client.me.raw)
-```

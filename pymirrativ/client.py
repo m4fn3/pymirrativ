@@ -76,28 +76,28 @@ class Mirrativ:
         return Response(res)
 
     # User actions
-    @check_grade(2)
+    @check_grade(1)
     def follow(self, user_id):
         data = {"user_id": user_id}
         custom_header = {"x-referer": "profile"}
         res = self.session.post(f"{Config.BASE_URL}{Config.FOLLOW}", data=data, headers=custom_header)
         return Response(res)
 
-    @check_grade(2)
+    @check_grade(1)
     def unfollow(self, user_id):
         data = {"user_id": user_id}
         custom_header = {"x-referer": "profile"}
         res = self.session.post(f"{Config.BASE_URL}{Config.UNFOLLOW}", data=data, headers=custom_header)
         return Response(res)
 
-    @check_grade(2)
+    @check_grade(1)
     def block(self, user_id):
         data = {"user_id": user_id}
         custom_header = {"x-referer": "profile"}
         res = self.session.post(f"{Config.BASE_URL}{Config.BLOCK}", data=data, headers=custom_header)
         return Response(res)
 
-    @check_grade(2)
+    @check_grade(1)
     def unblock(self, user_id):
         data = {"user_id": user_id}
         custom_header = {"x-referer": "profile"}
@@ -113,6 +113,7 @@ class Mirrativ:
         res = self.session.get(f"{Config.BASE_URL}{Config.USER_APPS}", params=params)
         return Response(res)
 
+    @check_grade(0)
     def send_live_request(self, user_id, count):
         data = {
             "count": count,
@@ -149,12 +150,42 @@ class Mirrativ:
         res = self.session.get(f"{Config.BASE_URL}{Config.COMMENTS}", params=params)
         return Response(res)
 
+    def send_comment(self, live_id, comment):
+        data = {"live_id": live_id, "comment": comment, "type": 1}
+        res = self.session.post(f"{Config.BASE_URL}{Config.COMMENT}", data=data)
+        return Response(res)
+
+    def send_join_message(self, live_id):
+        data = {"live_id": live_id, "comment": "", "type": 3}
+        res = self.session.post(f"{Config.BASE_URL}{Config.COMMENT}", data=data)
+        return Response(res)
+
     def get_viewer(self, live_id, page=1):
-        params = {"live_id": live_id, "page":page}
+        params = {"live_id": live_id, "page": page}
         res = self.session.get(f"{Config.BASE_URL}{Config.ONLINE_USERS}", params=params)
         return Response(res)
 
-    def leave(self, live_id):
+    def get_collaborators(self, live_id):
+        params = {"live_id": live_id}
+        res = self.session.get(f"{Config.BASE_URL}{Config.COLLAB_USERS}", params=params)
+        return Response(res)
+
+    def get_view_mission(self, live_id):
+        params = {"live_id": live_id}
+        res = self.session.get(f"{Config.BASE_URL}{Config.VIEW_MISSION}", params=params)
+        return Response(res)
+
+    def do_view_mission(self, live_id):
+        data = {"live_id": live_id}
+        res = self.session.post(f"{Config.BASE_URL}{Config.VIEW_MISSION}", data=data)
+        return Response(res)
+
+    def ping_live(self, live_id):
+        data = {"live_id": live_id, "error_count": 0, "is_ui_hidden": 0, "live_user_key": "", "view_mission_combo": 0, "view_mission_status": 360, "viewer_receive_push_notification": 0}
+        res = self.session.post(f"{Config.BASE_URL}{Config.LIVE_POLLING}", data=data)
+        return Response(res)
+
+    def leave_live(self, live_id):
         data = {"live_id": live_id}
         res = self.session.post(f"{Config.BASE_URL}{Config.LEAVE}", data=data)
         return Response(res)
