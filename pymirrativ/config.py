@@ -27,7 +27,7 @@ class Config:
     STREAMING_URL = "/live/get_streaming_url"
     CATALOG = "/live/catalog"
     LEAVE = "/live/leave"
-    ONLINE_USERS = "live/online_users"
+    ONLINE_USERS = "/live/online_users"
     COMMENT = "/live/live_comment"
     VIEW_MISSION = "/live/view_mission"
     LIVE_POLLING = "/live/live_polling"

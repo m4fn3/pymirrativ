@@ -104,10 +104,12 @@ class Mirrativ:
         res = self.session.post(f"{Config.BASE_URL}{Config.UNBLOCK}", data=data, headers=custom_header)
         return Response(res)
 
+    @check_grade(0)
     def get_currency(self):
         res = self.session.get(f"{Config.BASE_URL}{Config.CURRENCY}")
         return Response(res)
 
+    @check_grade(1)
     def get_user_apps(self, user_id):
         params = {"user_id": user_id}
         res = self.session.get(f"{Config.BASE_URL}{Config.USER_APPS}", params=params)
@@ -150,11 +152,13 @@ class Mirrativ:
         res = self.session.get(f"{Config.BASE_URL}{Config.COMMENTS}", params=params)
         return Response(res)
 
+    @check_grade(0)
     def send_comment(self, live_id, comment):
         data = {"live_id": live_id, "comment": comment, "type": 1}
         res = self.session.post(f"{Config.BASE_URL}{Config.COMMENT}", data=data)
         return Response(res)
 
+    @check_grade(0)
     def send_join_message(self, live_id):
         data = {"live_id": live_id, "comment": "", "type": 3}
         res = self.session.post(f"{Config.BASE_URL}{Config.COMMENT}", data=data)
