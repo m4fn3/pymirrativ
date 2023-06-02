@@ -35,3 +35,6 @@ Here are functions that will affect your grade:
 - `me()` : a grade will be 0 by calling this function if you are not logged in
 - `create_account()` : a grade will be 1
 - `login()` : a grade will be whatever a value your account has
+
+## Acknowledgements
+- [AttrDict](https://github.com/bcj/AttrDict) for attrdict library (pymirrativ includes the fix for python 3.10+)

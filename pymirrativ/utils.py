@@ -1,5 +1,5 @@
 import json.decoder
-from attrdict import AttrDict
+from .attrdict import AttrDict
 
 
 class Response(object):
